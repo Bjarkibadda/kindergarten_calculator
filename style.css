@@ -1,0 +1,169 @@
+/* styles.css */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #303f9f;
+  margin-bottom: 20px;
+}
+
+.relationship-btn {
+  background-color: #eceff1;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #303f9f;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.relationship-btn.active, .relationship-btn:hover {
+  background-color: #303f9f;
+  color: white;
+}
+
+.result-display{
+  width: 350px; /* Adjust width accordingly */
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid #303f9f;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+.input-group label {
+  display: block;
+  margin-top: 20px;
+}
+
+#calculate {
+  background-color: #303f9f;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 15px 60px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+#calculate:hover {
+  background-color: #1a237e;
+  transform: scale(1.05);
+}
+
+.result-display {
+  font-size: 18px;
+  color: #303f9f;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .input-group input, .input-group select, .result-display {
+    width: 90%; /* Adjust width accordingly on smaller screens */
+  }
+
+  #calculate {
+    padding: 15px 30px;
+  }
+}
+
+.details-grid {
+  display: grid;
+  grid-template-rows: repeat(4, auto); /* Creates four rows */
+  gap: 10px; /* Space between grid rows */
+  margin-top: 20px; /* Space above the grid */
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns: one for label, one for cost */
+}
+
+.label {
+  font-weight: bold; /* Make the label bold */
+  text-align: right; /* Align the text to the right */
+  padding-right: 10px; /* Space between label and cost */
+}
+
+.cost, .percentage {
+  text-align: left; /* Align the cost to the left */
+  padding-left: 10px; /* Space between label and cost */
+}
+
+/* Common class for all form elements for consistent spacing */
+.form-item {
+  margin-bottom: 10px; /* Adjust as necessary for consistent vertical space */
+}
+
+.relationship-btn,
+.input-group select,
+.input-group input,
+#calculate {
+  width: 200px;
+  padding: 15px;
+  border: 2px solid #303f9f;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Apply the common form-item class to all form-related elements */
+.relationship-status,
+.input-group label,
+.input-group select,
+.input-group input,
+#calculate {
+  display: block; /* Ensures that the margin applies correctly */
+  margin-bottom: 10px; /* This adds consistent space below each item */
+}
+
+.result-display {
+  font-size: 18px;
+  color: #303f9f;
+  text-align: center;
+  margin-top: 10px; /* Consistent space above the result display */
+}
+
+/* Update the grid-row to match the form items' vertical spacing */
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 3px; /* Consistent space below each row */
+}
+
+/* You may remove this if you've applied .form-item class to each form element as suggested */
+.input-group {
+  margin-bottom: 10px; /* Ensures space between input group and calculate button */
+}
+.relationship-btn:last-child {
+  margin-bottom: 0; /* Remove the bottom margin from the last relationship button */
+}
+
+.input-group label {
+  margin-top: 0px; /* Set the top margin of the first label to 10px */
+}
