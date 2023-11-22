@@ -13,13 +13,19 @@
     </div>
 
     <div class="input-group">
+      <p>(Heildartekjur og fjármagnstekjur fyrir skatt, eins og á skattframtali)</p>
       <label id="salaryLabel" for="salaryRange">Tekjubil fyrir einstæða forelda</label>
       <select id="salaryRange">
         <!-- Options will be populated by JavaScript -->
       </select>
       
       <label for="childrenCount" class="input-label">Fjöldi barna</label>
-      <input type="number" id="childrenCount" placeholder="Fjöldi barna">
+      <select id="childrenCount">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
       
       <label for="hours" class="input-label">Klukkutímar:</label>
       <select id="hours">
@@ -28,8 +34,19 @@
         <option value="6">6</option>
         <option value="7">7</option>
         <option value="8" selected>8</option>
-        <option value="8.5">8.5</option>
       </select>
+
+      <div id="additionalHoursContainer" style="display: none;">
+        <label for="additionalHours" class="input-label">Klukkutímar fyrir barn 2</label>
+        <select id="additionalHours">
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="8.5">8.5</option>
+        </select>
+      </div>
     </div>
     
 
@@ -38,9 +55,9 @@
     <div id="result" class="result-display">
       Heildarkostnaður: <span id="totalCost">0</span> kr.
     </div>
-    <!-- ... other parts of your HTML ... -->
 
 <div id="detailsGrid" class="details-grid", style="display: none;">
+  <p>Miðað við innslegnar forsendur eru leikskólagjöld eftirarandi:</p>
   <div class="grid-row">
     <span class="label">Skólagjald</span>
     <span id="schoolFee" class="cost">0 kr.</span>
@@ -58,9 +75,6 @@
     <span id="total" class="cost">0 kr.</span>
   </div>
 </div>
-
-<!-- ... rest of your HTML ... -->
-
   </div>
   <script src="calc.js"></script>
 </body>

@@ -19,6 +19,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const coupleBtn = document.getElementById('couple');
   let isSingle = true; // default to 'single'
 
+  const childrenCountSelect = document.getElementById('childrenCount');
+  const additionalHoursContainer = document.getElementById('additionalHoursContainer');
+
+  // Function to show/hide the additional hours dropdown
+  function toggleAdditionalHoursDropdown() {
+    const childrenCount = parseInt(childrenCountSelect.value, 10);
+    // Show the additional hours dropdown if there is more than one child
+    if (childrenCount > 1) {
+      additionalHoursContainer.style.display = 'block';
+    } else {
+      additionalHoursContainer.style.display = 'none';
+    }
+  }
+
+  // Event listener for when the number of children changes
+  childrenCountSelect.addEventListener('change', toggleAdditionalHoursDropdown);
+
   singleBtn.addEventListener('click', function() {
     isSingle = true;
     singleBtn.classList.add('active');
