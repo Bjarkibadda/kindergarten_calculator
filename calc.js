@@ -94,29 +94,39 @@ document.addEventListener('DOMContentLoaded', function() {
     childrenCount = Number(document.getElementById('childrenCount').value);
     discountPercentage = isSingle ? Number(document.getElementById('singleSalary').value): Number(document.getElementById('coupleSalary').value);
     hours = Number(document.getElementById('hours').value);
-    var timeCostWithoutDiscount;
+    var timeCostWithoutDiscount = 0;
+    var salaryDiscount = 0;
+    var siblingsDiscount = 0;
     
-    //reikna systkinaafslátt
     if(childrenCount === 0 || hours === 0){
       totalCost = 0;
     }
 
-    //tímakostnaður fyrir fyrsta barn
-    timeCost = hoursCost[hours];
-    timeCostWithoutDiscount = timeCost;
+    if(childrenCount === 1){
+      timeCost = hoursCost[hours];
+      timeCostWithoutDiscount = timeCost;
+    }
   
 
     if(childrenCount > 1){
-      // kostnaður við annað barn
+  
       secondHours = Number(document.getElementById('additionalHours').value); 
-      // 50% afsláttur á barni númer tvö
-      timeCost += hoursCost[secondHours]*0.5;
+      // 50% afsláttur á elsta barni
+      siblingsDiscount +=hoursCost[hours]*0.5;
+
+      timeCost = siblingsDiscount;
+
+      timeCost += hoursCost[secondHours];
       
-      //bæti við tímagjaldi á barn nr tvö miðað við innslegnar forsendur. Börn umfram það reiknaðar m.v. fyrsta barn.
-      timeCostWithoutDiscount +=hoursCost[secondHours] + hoursCost[hours]*(childrenCount-2);
+      //bætum við tímagjaldi á barn nr tvö miðað við innslegnar forsendur. Börn umfram það reiknaðar m.v. fyrsta barn.
+      timeCostWithoutDiscount +=hoursCost[secondHours] + hoursCost[hours] + hoursCost[hours]*(childrenCount-2);
+
+      //bætum við í systkynaafslátt 100% fyrir barn nr 3 og 4, ef til staðar.
+      siblingsDiscount += hoursCost[hours]*(childrenCount-2);
     }
 
     //reikna afslátt vegna launa
+    salaryDiscount = timeCost * discountPercentage
     timeCost = timeCost * (1-discountPercentage);
 
     //reikna matarkostnað.
@@ -137,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     totalCost = timeCost + foodCost;
 
-    costForNt = timeCostWithoutDiscount/0.1082;
+    costForNt = timeCostWithoutDiscount/0.1082 + salaryDiscount + siblingsDiscount;
   
 
     try {
