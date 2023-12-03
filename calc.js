@@ -1,8 +1,8 @@
 // Constants
 const HOUR_GENERAL_COST = 4278;
-const breakfastCost = 2908;
-const lunchCost = 6925;
-const afternoonSnackCost = 2908;
+const BREAKFAST_COST = 2908;
+const LUNCH_COST = 6925;
+const AFTERNOON_SNACK_COST = 2908;
 
 //breytur
 var childrenCount
@@ -94,25 +94,23 @@ document.addEventListener('DOMContentLoaded', function() {
     timeCost = timeCost * (1-discountPercentage);
 
     //reikna matarkostnað.
-    var foodCost = (breakfastCost + lunchCost)*childrenCount
+    var foodCost = (BREAKFAST_COST + LUNCH_COST)*childrenCount
     
     if(hours >=7){
-      foodCost +=afternoonSnackCost;
+      foodCost += AFTERNOON_SNACK_COST;
     }
 
      if(childrenCount === 2 && secondHours >=7 ){
-      foodCost +=afternoonSnackCost;
+      foodCost += AFTERNOON_SNACK_COST;
     }
 
     // ef börnin eru fleiri en tvö, þá gerum við ráð fyrir að börn 3 og 4 séu jafn lengi og barn eitt á leikskólanum.
     else if(childrenCount > 2 && hours >= 7){
-      foodCost += afternoonSnackCost *(childrenCount-2);
+      foodCost += AFTERNOON_SNACK_COST *(childrenCount-2);
     }
 
     totalCost = timeCost + foodCost;
-
     costForNt = timeCostWithoutDiscount/0.1082 + salaryDiscount + siblingsDiscount;
-  
 
     try {
       const formattedTotalCost = formatCurrency(totalCost);
