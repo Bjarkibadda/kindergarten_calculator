@@ -16,23 +16,24 @@ var costForNt
 document.addEventListener('DOMContentLoaded', function() {
   const singleBtn = document.getElementById('single');
   const coupleBtn = document.getElementById('couple');
-  let isSingle = true; // default to 'single'
+  let isSingle = true; 
 
   const childrenCountSelect = document.getElementById('childrenCount');
   const additionalHoursContainer = document.getElementById('additionalHoursContainer');
+  const hoursLabel = document.getElementById('hoursLabel');
 
   // Function to show/hide the additional hours dropdown
   function toggleAdditionalHoursDropdown() {
     const childrenCount = parseInt(childrenCountSelect.value, 10);
-    // Show the additional hours dropdown if there is more than one child
     if (childrenCount > 1) {
       additionalHoursContainer.style.display = 'block';
+      hoursLabel.textContent = "Klukkutímar elsta barn:";
     } else {
       additionalHoursContainer.style.display = 'none';
+      hoursLabel.textContent = "Klukkutímar:";
     }
   }
 
-  // Event listener for when the number of children changes
   childrenCountSelect.addEventListener('change', toggleAdditionalHoursDropdown);
 
   singleBtn.addEventListener('click', function() {
@@ -40,6 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
     singleBtn.classList.add('active');
     coupleBtn.classList.remove('active');
     salaryLabel.textContent = isSingle ? "Tekjubil fyrir einstæða forelda" : "Tekjubil fyrir par";
+    document.getElementById('singleSalary').style.display = 'block';
+    document.getElementById('coupleSalary').style.display = 'none';
+
   });
 
   coupleBtn.addEventListener('click', function() {
@@ -47,42 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
     coupleBtn.classList.add('active');
     singleBtn.classList.remove('active');
     salaryLabel.textContent = isSingle ? "Tekjubil fyrir einstæða forelda" : "Tekjubil fyrir par";
-  });
-
-  const salaryLabel = document.getElementById('salaryLabel');
-
-    document.getElementById('single').addEventListener('click', function() {
-      document.getElementById('singleSalary').style.display = 'block';
-      document.getElementById('coupleSalary').style.display = 'none';
-      isSingle = true;
-      salaryLabel.textContent = "Tekjubil fyrir einstæða forelda"
-    });
-    
-    document.getElementById('couple').addEventListener('click', function() {
-      document.getElementById('singleSalary').style.display = 'none';
-      document.getElementById('coupleSalary').style.display = 'block';
-      isSingle = false;
-      salaryLabel.textContent = "Tekjubil fyrir par";
-
-    });
-
-  singleBtn.addEventListener('click', function() {
-    isSingle = true;
-    singleBtn.classList.add('active');
-    coupleBtn.classList.remove('active');
-
-  });
-
-  coupleBtn.addEventListener('click', function() {
-    isSingle = false;
-    coupleBtn.classList.add('active');
-    singleBtn.classList.remove('active');
-
+    document.getElementById('singleSalary').style.display = 'none';
+    document.getElementById('coupleSalary').style.display = 'block';
   });
 
   document.getElementById('calculate').addEventListener('click', function() {
-    ///todo: add validation to the fields;
-
     childrenCount = Number(document.getElementById('childrenCount').value);
     discountPercentage = isSingle ? Number(document.getElementById('singleSalary').value): Number(document.getElementById('coupleSalary').value);
     hours = Number(document.getElementById('hours').value);
@@ -101,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
     if(childrenCount > 1){
-  
       secondHours = Number(document.getElementById('additionalHours').value); 
       // 50% afsláttur á elsta barni
       siblingsDiscount += HOUR_GENERAL_COST * hours * 0.5;
@@ -159,14 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to format the currency
 function formatCurrency(number) {
-  // Round the number to the nearest whole number
   let roundedNumber = Math.round(number);
-
-  // Convert the number to a string
   let numberStr = roundedNumber.toString();
-
-  // Replace every third digit from the end with a period
   let formatted = numberStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
   return formatted;
 }})

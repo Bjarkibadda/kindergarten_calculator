@@ -201,3 +201,17 @@ p {
 .input-group label {
   margin-top: 0px; /* Set the top margin of the first label to 10px */
 }
+
+@media (max-width: 480px) {
+  .relationship-status {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .relationship-btn {
+      width: auto; /* Adjust the width as needed */
+      margin: 5px; /* Add some space between the buttons */
+  }
+}

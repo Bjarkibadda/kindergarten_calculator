@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kindergarten Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="calc.js"></script>
+  <title>Reiknivél Leikskóla - Norðurþing</title>
 </head>
 <body>
-
   <a href="https://www.nordurthing.is/" title="Hlekkur í heimasíðu Norðurþings" class="logo-link"><img src="nordurthing.svg" alt="Merki Norðurþings"></a>
   <div class="container">
     <div class="relationship-status">
@@ -41,7 +42,7 @@
         <option value="4">4</option>
       </select>
       
-      <label for="hours" class="input-label">Klukkutímar fyrir elsta barn:</label>
+      <label for="hours", id="hoursLabel" class="input-label">Klukkutímar:</label>
       <select id="hours">
         <option value="4">4</option>
         <option value="5">5</option>
@@ -95,6 +96,5 @@
       </div>
     </div>
   </div>
-  <script src="calc.js"></script>
 </body>
 </html>
