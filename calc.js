@@ -4,14 +4,6 @@ const breakfastCost = 2908;
 const lunchCost = 6925;
 const afternoonSnackCost = 2908;
 
-const hoursCost = {
-  4: 17114,
-  5: 21392,
-  6: 25671,
-  7: 29949,
-  8: 34228,
-};
-
 //breytur
 var childrenCount
 var hours
@@ -103,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if(childrenCount === 1){
-      timeCost = hoursCost[hours];
+      timeCost = HOUR_GENERAL_COST * hours;
       timeCostWithoutDiscount = timeCost;
     }
   
@@ -112,17 +104,17 @@ document.addEventListener('DOMContentLoaded', function() {
   
       secondHours = Number(document.getElementById('additionalHours').value); 
       // 50% afsláttur á elsta barni
-      siblingsDiscount +=hoursCost[hours]*0.5;
+      siblingsDiscount += HOUR_GENERAL_COST * hours * 0.5;
 
       timeCost = siblingsDiscount;
 
-      timeCost += hoursCost[secondHours];
+      timeCost += HOUR_GENERAL_COST * secondHours;
       
       //bætum við tímagjaldi á barn nr tvö miðað við innslegnar forsendur. Börn umfram það reiknaðar m.v. fyrsta barn.
-      timeCostWithoutDiscount +=hoursCost[secondHours] + hoursCost[hours] + hoursCost[hours]*(childrenCount-2);
+      timeCostWithoutDiscount += HOUR_GENERAL_COST * secondHours + HOUR_GENERAL_COST * hours + HOUR_GENERAL_COST * hours *(childrenCount-2);
 
       //bætum við í systkynaafslátt 100% fyrir barn nr 3 og 4, ef til staðar.
-      siblingsDiscount += hoursCost[hours]*(childrenCount-2);
+      siblingsDiscount += HOUR_GENERAL_COST* hours *(childrenCount-2);
     }
 
     //reikna afslátt vegna launa
