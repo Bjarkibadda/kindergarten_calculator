@@ -19,6 +19,14 @@ h1 {
   margin-bottom: 20px;
 }
 
+.logo-link {
+  display: inline-block; 
+  padding-left: 20px; 
+  padding-top: 20px;
+}
+
+
+
 .relationship-btn {
   background-color: #eceff1;
   border: none;
@@ -52,7 +60,7 @@ h1 {
   margin: 20px 0;
 }
 
-.input-group p {
+p {
   font-style: italic;
   font-size: smaller;
 }
@@ -77,6 +85,24 @@ h1 {
 }
 
 #calculate:hover {
+  background-color: #1a237e;
+  transform: scale(1.05);
+}
+
+#reloadPage {
+  background-color: #303f9f;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+#reloadPage:hover {
   background-color: #1a237e;
   transform: scale(1.05);
 }
@@ -129,7 +155,8 @@ h1 {
 .relationship-btn,
 .input-group select,
 .input-group input,
-#calculate {
+#calculate,
+#reloadPage {
   width: 200px;
   padding: 15px;
   border: 2px solid #303f9f;
@@ -143,7 +170,8 @@ h1 {
 .input-group label,
 .input-group select,
 .input-group input,
-#calculate {
+#calculate,
+#reloadPage {
   display: block; /* Ensures that the margin applies correctly */
   margin-bottom: 10px; /* This adds consistent space below each item */
 }
@@ -172,4 +200,18 @@ h1 {
 
 .input-group label {
   margin-top: 0px; /* Set the top margin of the first label to 10px */
+}
+
+@media (max-width: 480px) {
+  .relationship-status {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .relationship-btn {
+      width: auto; /* Adjust the width as needed */
+      margin: 5px; /* Add some space between the buttons */
+  }
 }

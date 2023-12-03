@@ -2,21 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kindergarten Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="calc.js"></script>
+  <title>Reiknivél Leikskóla - Norðurþing</title>
 </head>
 <body>
+  <a href="https://www.nordurthing.is/" title="Hlekkur í heimasíðu Norðurþings" class="logo-link"><img src="nordurthing.svg" alt="Merki Norðurþings"></a>
   <div class="container">
     <div class="relationship-status">
       <button id="single" class="relationship-btn active">Ekki í sambúð</button>
       <button id="couple" class="relationship-btn">Í sambúð</button>
     </div>
-
+    <p>(Heildartekjur og fjármagnstekjur fyrir skatt, eins og á skattframtali)</p>
     <div class="input-group">
-      <p>(Heildartekjur og fjármagnstekjur fyrir skatt, eins og á skattframtali)</p>
-      <label id="salaryLabel" for="salaryRange">Tekjubil fyrir einstæða forelda</label>
-      <select id="salaryRange">
-        <!-- Options will be populated by JavaScript -->
+      
+      <label id="salaryLabel" for="singleSalary">Tekjubil fyrir einstæða forelda</label>
+
+      <select id="singleSalary" class="salary-options">
+        <option value=0.75>0 - 430.999</option>
+        <option value=0.5>431.000 - 550.999</option>
+        <option value=0.25>551.000 - 670.999</option>
+        <option value=0>&gt; 671.000</option>
+      </select>
+      
+
+      <select id="coupleSalary" class="salary-options" style="display: none;">
+        <option value=0.75>0 - 689.599</option>
+        <option value=0.5>689.600 - 881.599</option>
+        <option value=0.25>881.600 - 1.073.599</option>
+        <option value=0>&gt; 1.073.600</option>
       </select>
       
       <label for="childrenCount" class="input-label">Fjöldi barna</label>
@@ -27,7 +42,7 @@
         <option value="4">4</option>
       </select>
       
-      <label for="hours" class="input-label">Klukkutímar:</label>
+      <label for="hours", id="hoursLabel" class="input-label">Klukkutímar:</label>
       <select id="hours">
         <option value="4">4</option>
         <option value="5">5</option>
@@ -37,14 +52,13 @@
       </select>
 
       <div id="additionalHoursContainer" style="display: none;">
-        <label for="additionalHours" class="input-label">Klukkutímar fyrir barn 2</label>
+        <label for="additionalHours" class="input-label">Klukkutímar yngsta barn:</label>
         <select id="additionalHours">
           <option value="4">4</option>
           <option value="5">5</option>
           <option value="6">6</option>
           <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="8.5">8.5</option>
+          <option value="8" selected>8</option>
         </select>
       </div>
     </div>
@@ -55,27 +69,32 @@
     <div id="result" class="result-display">
       Heildarkostnaður: <span id="totalCost">0</span> kr.
     </div>
-
-<div id="detailsGrid" class="details-grid", style="display: none;">
-  <p>Miðað við innslegnar forsendur eru leikskólagjöld eftirarandi:</p>
-  <div class="grid-row">
-    <span class="label">Skólagjald</span>
-    <span id="schoolFee" class="cost">0 kr.</span>
+    
+    <button id="reloadPage" onclick="window.location.reload(true)">Endursetja Formið</button>
+    
+    <div id="detailsGrid" class="details-grid", style="display: none;">
+      <p>Miðað við innslegnar forsendur eru leikskólagjöld eftirarandi:</p>
+      <div class="grid-row">
+        <span class="label">Skólagjald</span>
+        <span id="schoolFee" class="cost">0 kr.</span>
+      </div>
+      <div class="grid-row">
+        <span class="label">Fæðisgjald</span>
+        <span id="foodFee" class="cost">0 kr.</span>
+      </div>
+      <div class="grid-row">
+        <span class="label">Afsláttur vegna tekna</span>
+        <span id="incomeDiscount" class="percentage">0%</span>
+      </div>
+      <div class="grid-row">
+        <span class="label">Samtals</span>
+        <span id="total" class="cost">0 kr.</span>
+      </div>
+      <div class="grid-row">
+        <span class="label">Hlutdeild Norðurþings</span>
+        <span id="ntTotal" class="cost">0 kr.</span>
+      </div>
+    </div>
   </div>
-  <div class="grid-row">
-    <span class="label">Fæðisgjald</span>
-    <span id="foodFee" class="cost">0 kr.</span>
-  </div>
-  <div class="grid-row">
-    <span class="label">Afsláttur vegna tekna</span>
-    <span id="incomeDiscount" class="percentage">0%</span>
-  </div>
-  <div class="grid-row">
-    <span class="label">Samtals</span>
-    <span id="total" class="cost">0 kr.</span>
-  </div>
-</div>
-  </div>
-  <script src="calc.js"></script>
 </body>
 </html>
