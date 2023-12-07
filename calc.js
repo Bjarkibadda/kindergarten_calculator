@@ -4,19 +4,16 @@ const BREAKFAST_COST = 2908;
 const LUNCH_COST = 6925;
 const AFTERNOON_SNACK_COST = 2908;
 
-//breytur
-var childrenCount
-var hours
-var secondHours = 0
-var totalCost
-var discountPercentage
-var timeCost
-var costForNt
-
 document.addEventListener('DOMContentLoaded', function() {
   const singleBtn = document.getElementById('single');
   const coupleBtn = document.getElementById('couple');
-  let isSingle = true; 
+  var isSingle = true; 
+  var childrenCount
+  var secondHours = 0
+  var totalCost
+  var discountPercentage
+  var timeCost
+  var costForNt
 
   const childrenCountSelect = document.getElementById('childrenCount');
   const additionalHoursContainer = document.getElementById('additionalHoursContainer');
@@ -24,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to show/hide the additional hours dropdown
   function toggleAdditionalHoursDropdown() {
-    const childrenCount = parseInt(childrenCountSelect.value, 10);
+    childrenCount = parseInt(childrenCountSelect.value, 10);
     if (childrenCount > 1) {
       additionalHoursContainer.style.display = 'block';
       hoursLabel.textContent = "Klukkutímar elsta barn:";
@@ -58,7 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('calculate').addEventListener('click', function() {
     childrenCount = Number(document.getElementById('childrenCount').value);
     discountPercentage = isSingle ? Number(document.getElementById('singleSalary').value): Number(document.getElementById('coupleSalary').value);
-    hours = Number(document.getElementById('hours').value);
+    var hours = Number(document.getElementById('hours').value);
+    
     var timeCostWithoutDiscount = 0;
     var salaryDiscount = 0;
     var siblingsDiscount = 0;
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
       timeCostWithoutDiscount += HOUR_GENERAL_COST * secondHours + HOUR_GENERAL_COST * hours + HOUR_GENERAL_COST * hours *(childrenCount-2);
 
       //bætum við í systkynaafslátt 100% fyrir barn nr 3 og 4, ef til staðar.
-      siblingsDiscount += HOUR_GENERAL_COST* hours *(childrenCount-2);
+      siblingsDiscount += HOUR_GENERAL_COST * hours *(childrenCount-2);
     }
 
     //reikna afslátt vegna launa
@@ -106,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ef börnin eru fleiri en tvö, þá gerum við ráð fyrir að börn 3 og 4 séu jafn lengi og barn eitt á leikskólanum.
     else if(childrenCount > 2 && hours >= 7){
-      foodCost += AFTERNOON_SNACK_COST *(childrenCount-2);
+      foodCost += AFTERNOON_SNACK_COST * (childrenCount-2);
     }
 
     totalCost = timeCost + foodCost;
